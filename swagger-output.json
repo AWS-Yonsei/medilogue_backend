@@ -1,0 +1,1447 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Medilogue Swagger RestFul API UI",
+      "description": "Node.js RestFul API UI",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8080"
+      }
+    ],
+    "paths": {
+      "/register/": {
+        "get": {
+          "description": "회원가입에 필요한 categories 정보를 제공하는 API",
+          "tags": ["register"],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        },
+        "post": {
+          "tags": ["register"],
+          "description": "회원가입에 필요한 정보들을 제공받아서 user table에 저장하는 API",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "User already exists"
+            },
+            "401": {
+              "description": "DB Error"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uid": {
+                      "example": "userid1234",
+                      "type": "string"
+                    },
+                    "password": {
+                      "example": "userpass1234",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "heekang jang",
+                      "type": "string"
+                    },
+                    "sex": {
+                      "example": "Male",
+                      "type": "string"
+                    },
+                    "birth": {
+                      "example": "2001-05-19",
+                      "type": "date"
+                    },
+                    "email": {
+                      "example": "userid1234@gmail.com",
+                      "type": "string"
+                    },
+                    "certificationKey": {
+                      "example": "amsdvdkslnn234mflf32fm",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/register/checkUserIdExist": {
+        "post": {
+          "tags": ["register"],
+          "description": "회원가입 시 id가 중복되지 않는지 체크하는 API",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uid": {
+                      "example": "any",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/register/certification": {
+        "post": {
+          "tags": ["register"],
+          "description": "휴대폰 인증시에 발급된 imp_uid가 유효한지 확인하는 API ",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "imp_uid": {
+                      "example": "any",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/auth/": {
+        "get": {
+          "tags": ["auth"],
+          "description": "리펙터링 필요함",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/login/": {
+        "post": {
+          "tags": ["login"],
+          "description": "유저의 ID와 비밀번호를 확인하고 JWT token을 발급해주는 API",
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uid": {
+                      "example": "any",
+                      "type": "string"
+                    },
+                    "password": {
+                      "example": "any",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/profile/setRegion": {
+        "get": {
+          "tags": ["profile"],
+          "description": "DB에 region정보를 입력하는 API",
+          "parameters": [],
+          "responses": {
+            "201": {
+              "description": "Created"
+            },
+            "406": {
+              "description": "Not Acceptable"
+            }
+          }
+        }
+      },
+      "/profile/": {
+        "get": {
+          "tags": ["profile"],
+          "description": "프로필 설정에 필요한 정보들을 제공하는 API",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "region_data": {
+                      "서울특별시": [
+                        { "label": "중구", "code": "1114000000" },
+                        { "label": "동대문구", "code": "1123000000" },
+                        { "label": "중랑구", "code": "1126000000" }
+                      ],
+                      "대구광역시": [
+                        { "label": "서구", "code": "2717000000" },
+                        { "label": "중구", "code": "2711000000" }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+      "/profile/checkUserNicknameExist": {
+        "post": {
+          "tags": ["profile"],
+          "description": "최초 프로필 설정 시 중복된 닉네임이 존재하는지 확인하는 API",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nickname": {
+                      "example": "any",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/profile/setProfile": {
+        "post": {
+          "tags": ["profile"],
+          "description": "회원가입 후 프로필을 최초로 설정하는 API",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nickname": {
+                      "example": "닉네임123",
+                      "type": "string"
+                    },
+                    "description": {
+                      "example": "any",
+                      "type": "string"
+                    },
+                    "hobbies": {
+                      "example": ["3", "6", "9"],
+                      "type": "Array"
+                    },
+                    "region": {
+                      "example": "4717000000",
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "image file"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/profile/changeProfile": {
+        "patch": {
+          "tags": ["profile"],
+          "description": "유저의 프로필을 변경하는 API",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string (JWT token)"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "token": "sadnjsjkdan%#NNl.fdjsnflknfdlksdnobnerr.osfnsdofnao"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Selected hobbies are duplicated."
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "example": "any",
+                      "type": "string"
+                    },
+                    "hobbies": {
+                      "example": ["3", "6", "9"],
+                      "type": "Array"
+                    },
+                    "region": {
+                      "example": "4717000000",
+                      "type": "string"
+                    },
+                    "image": {
+                      "type": "image file"
+                    },
+                    "name": {
+                      "example": "heekang jang",
+                      "type": "string"
+                    },
+                    "sex": {
+                      "example": "Male",
+                      "type": "string"
+                    },
+                    "birth": {
+                      "example": "2001-05-19",
+                      "type": "date"
+                    },
+                    "email": {
+                      "example": "userid1234@gmail.com",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/profile/changePassword": {
+        "patch": {
+          "tags": ["profile"],
+          "description": "비밀번호를 변경하는 API로 기존 비밀번호를 확인하고 새로운 비밀번호를 암호화하여 저장함",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "token": "sadnjsjkdan%#NNl.fdjsnflknfdlksdnobnerr.osfnsdofnao"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Fail to new token generation"
+            },
+            "401": {
+              "description": "password is incorrect"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "uid": {
+                      "example": "any",
+                      "type": "string"
+                    },
+                    "new_password": {
+                      "example": "any",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/create/": {
+        "post": {
+          "description": "게시글(feed)를 생성하는 API",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "example": "any",
+                      "type": "string"
+                    },
+                    "content": {
+                      "example": "any",
+                      "type": "string"
+                    },
+                    "categories": {
+                      "example": ["3", "6", "9"],
+                      "type": "Array"
+                    },
+                    "regions": {
+                      "example": ["4723000000", "4725000000"],
+                      "type": "Array"
+                    },
+                    "date": {
+                      "example": "2019-04-17",
+                      "type": "date"
+                    },
+                    "TO": {
+                      "example": 10,
+                      "type": "Number"
+                    },
+                    "regularity": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/read/recruit": {
+        "get": {
+          "description": "자신이 게시한 글에 대한 정보를 제공하는 API",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+      "/read/{feed_id}": {
+        "get": {
+          "description": "feed의 상세페이지를 볼 수 있는 API",
+          "parameters": [
+            {
+              "name": "feed_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string (JWT token)"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "feed": {
+                      "_id": "63c50268a0ff5e4980e88120",
+                      "title": "dfajnjkjadsfnk",
+                      "content": "sad54654654648489fasdf4d8asf984da48f4das465fdas456fa4ds6fas45f5fdsa46fsa456",
+                      "author": "hehehehehehehehehe",
+                      "categories": ["1", "7"],
+                      "regions": [
+                        {
+                          "region": "경기도",
+                          "district": "안양시 만안구",
+                          "region_code": "4117100000"
+                        },
+                        {
+                          "region": "경기도",
+                          "district": "부천시",
+                          "region_code": "4119000000"
+                        }
+                      ],
+                      "state": "Recruiting",
+                      "date": "2023-01-17T00:00:00.000Z",
+                      "TO": 3,
+                      "regularity": true,
+                      "thumbnail": "https://ourb.s3.ap-northeast-2.amazonaws.com/5911673930227303.jpg",
+                      "fid": 42,
+                      "__v": 0
+                    },
+                    "images": [
+                      {
+                        "_id": "63c60ed38b5ff4a8568e6441",
+                        "fid": 42,
+                        "URL": "https://ourb.s3.ap-northeast-2.amazonaws.com/9231673924306945.jpg",
+                        "__v": 0
+                      },
+                      {
+                        "_id": "63c625f378b97cec05d4ba30",
+                        "fid": 42,
+                        "URL": "https://ourb.s3.ap-northeast-2.amazonaws.com/5911672542303.jpg",
+                        "__v": 0
+                      },
+                      {
+                        "_id": "63c625f378b97cec05d4ba31",
+                        "fid": 42,
+                        "URL": "https://ourb.s3.ap-northeast-2.amazonaws.com/604162273930227305.jpg",
+                        "__v": 0
+                      }
+                    ],
+                    "isAuthor": false,
+                    "isScrapped": true,
+                    "matchStatus": "Pending (match 신청 없을 땐 필드 자체가 없음)",
+                    "can_apply": true
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+      "/delete/{fid}": {
+        "delete": {
+          "description": "게시글을 삭제하는 API(soft delete)",
+          "parameters": [
+            {
+              "name": "fid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad Request"
+            }
+          }
+        }
+      },
+      "/update/{fid}": {
+        "put": {
+          "description": "fid가 일치하는 게시물을 업데이트하는 API",
+          "parameters": [
+            {
+              "name": "fid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "example": "안녕하세요 모집글 업데이트 했습니다!",
+                      "type": "string"
+                    },
+                    "content": {
+                      "example": "any",
+                      "type": "string"
+                    },
+                    "state": {
+                      "example": "Recruiting/Closed/Deleted",
+                      "type": "string"
+                    },
+                    "categories": {
+                      "example": ["1", "2", "3"],
+                      "type": "Array"
+                    },
+                    "regions": {
+                      "example": ["4715000000"],
+                      "type": "Array"
+                    },
+                    "date": {
+                      "example": "any",
+                      "type": "date"
+                    },
+                    "TO": {
+                      "example": "any",
+                      "type": "Number"
+                    },
+                    "regularity": {
+                      "example": "any",
+                      "type": "boolean"
+                    },
+                    "imgURL": {
+                      "example": [
+                        "https://ourb.s3.ap-northeast-2.amazonaws.com/%EC%B9%B4%ED%85%8C%EC%BD%94%EB%A6%sdafsdaF%B8%EC%A7%80/1.jpg",
+                        "https://ourb.s3.ap-northeast-2.amazonaws.com/%EC%B9%B4%ED%85%8C%EC%BmfldskmalEC%9D%B4%EB%AF%B8%EC%A7%80/0.jpg"
+                      ],
+                      "type": "Array"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/match/application": {
+        "get": {
+          "tags": ["match"],
+          "description": "유저가 신청한 매칭 결과들을 parameter의 status를 보고 판단하여 불러온다",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string (JWT token)"
+              }
+            },
+            {
+              "name": "status",
+              "in": "url",
+              "schema": {
+                "type": "string",
+                "example": "..../match/application?status=Accepted/Pending/Rejected"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "feedlist": [
+                      {
+                        "_id": "63c50102d3e134a6e7cbca73",
+                        "title": "asdfasdsdjldsfjljkjaf",
+                        "content": "asdfasdsdjldsfjljkjafasdfasdsdjldsfjljkjafasdfasdsdjldsfjljkjafasdfasdsdjldsfjljkjaf",
+                        "author": "hehehehehehehehehe",
+                        "categories": ["9", "3"],
+                        "regions": [
+                          {
+                            "region_code": "4687000000",
+                            "region": "전라남도",
+                            "district": "영광군"
+                          }
+                        ],
+                        "state": "Recruiting",
+                        "date": "2022-01-07T00:00:00.000Z",
+                        "TO": 3,
+                        "regularity": true,
+                        "thumbnail": "https://ourb.s3.ap-northeast-2.amazonaws.com/77717355455234301.png",
+                        "fid": 46,
+                        "__v": 0
+                      },
+                      {
+                        "_id": "63c50268a0ff5e4980e88120",
+                        "title": "안녕하세요 배드민턴 소모임 모집중입니다",
+                        "content": "sad54654654648489fasdf4d8asf984da48f4das465fdas456fa4ds6fas45f5fdsa46fsa456",
+                        "author": "asdnfljnnfads",
+                        "categories": ["9", "7", "1"],
+                        "regions": [
+                          {
+                            "region": "경기도",
+                            "district": "안양시 만안구",
+                            "region_code": "4117100000"
+                          },
+                          {
+                            "region": "경기도",
+                            "district": "부천시",
+                            "region_code": "4119000000"
+                          }
+                        ],
+                        "state": "Recruiting",
+                        "date": "2023-01-17T00:00:00.000Z",
+                        "TO": 3,
+                        "regularity": true,
+                        "thumbnail": "https://ourb.s3.ap-northeast-2.amazonaws.com/591167637227303.jpg",
+                        "fid": 42,
+                        "__v": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/match/application/{fid}": {
+        "post": {
+          "tags": ["match"],
+          "description": "게시글에 match 신청을 넣는 API",
+          "parameters": [
+            {
+              "name": "fid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string (JWT token)"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "DB error"
+            },
+            "401": {
+              "description": "err: re-apply only possible once."
+            },
+            "402": {
+              "description": "state error : Only one application can exist."
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/match/recruit/{fid}": {
+        "get": {
+          "tags": ["match"],
+          "description": "관리자가 각 feed 별로 매칭 신청한 사람들 중 pending상태인 사람을 보여줌",
+          "parameters": [
+            {
+              "name": "fid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "applylist": [
+                      {
+                        "_id": "63c7a779797e189f9cd515d8",
+                        "app_user": "sssss",
+                        "manager": "dsaklmlkmdaslkfml",
+                        "fid": 44,
+                        "due_date": "2023-01-21T08:41:02.982Z",
+                        "accept": "Pending",
+                        "apply_cnt": 2,
+                        "__v": 0
+                      },
+                      {
+                        "_id": "63c7a7a5797e189f9cd515dc",
+                        "app_user": "dsadsfas855",
+                        "manager": "dsaklmlkmdaslkfml",
+                        "fid": 44,
+                        "due_date": "2023-01-21T08:02:45.173Z",
+                        "accept": "Pending",
+                        "apply_cnt": 1,
+                        "__v": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/match/recruit/{fid}/{app_user}": {
+        "get": {
+          "tags": ["match"],
+          "description": "관리자가 매칭을 신청한 유저에 대한 프로필 정보를 제공받는 API",
+          "parameters": [
+            {
+              "name": "fid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "app_user",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "applicant": {
+                      "hobbies": ["3"],
+                      "_id": "63be0ad937bdda1077057278",
+                      "uid": "vessgod",
+                      "password": "$2b$10$gocA2.6kwu0Gj92fbv/UV.6l6H.wntUCwO6iZa31kr3nbUxVZ9cwu",
+                      "name": "heekang",
+                      "sex": "Female",
+                      "birth": "1999-04-03T00:00:00.000Z",
+                      "email": "vessgod@gmail.com",
+                      "certificationKey": "l0o4Lpwo/Yi9POjpb1w3O3tdfWGFTLNk3fCyqQbBco4QUGLQcNyM6/2dYVxWtDqVlZh4ElGwBt7YRrcyv7WYlw==",
+                      "__v": 0,
+                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzYmUwYWQ5MzdiZGRhMTA3NzA1NzI3OCIsInVpZCI6InZlc3Nnb2QiLCJuYW1lIjoiaGVla2FuZyIsInNleCI6IkZlbWFsZSIsImJpcnRoIjoiMTk5OS0wNC0wM1QwMDowMDowMC4wMDBaIiwiZW1haWwiOiJ2ZXNzZ29kQGdtYWlsLmNvbSIsImNlcnRpZmljYXRpb25LZXkiOiJsMG80THB3by9ZaTlQT2pwYjF3M08zdGRmV0dGVExOazNmQ3lxUWJCY280UVVHTFFjTnlNNi8yZFlWeFd0RHFWbFpoNEVsR3dCdDdZUnJjeXY3V1lsdz09IiwicHJvZmlsZUltZyI6Imh0dHBzOi8vb3VyYi5zMy5hcC1ub3J0aGVhc3QtMi5hbWF6b25hd3MuY29tLzk5MzE2NzM0MDAyMDA0MjQucG5nIiwibmlja25hbWUiOiJzc3NzcyIsImRlc2NyaXB0aW9uIjoiaGhpaGloaWhpaGloaWhpaGloaSIsImhvYmJ5MSI6ImdhbWUiLCJob2JieTIiOiIxNDg0NjUiLCJob2JieTMiOiJmb290YmFsbCJ9LCJpYXQiOjE2NzM0MTMyMDN9.GD7wlW7-FE03VTOc7qxZ-j5AdHsIePxaQG4tTZixnFU",
+                      "description": "hhihihihihihihihihi",
+                      "hobby1": "game",
+                      "hobby2": "148465",
+                      "hobby3": "football",
+                      "nickname": "sssss",
+                      "profileImg": "https://ourb.s3.ap-northeast-2.amazonaws.com/9931673400200424.png"
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "applicant not found"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        },
+        "patch": {
+          "tags": ["match"],
+          "description": "관리자가 매칭 신청에 대해서 수락/거절을 하는 API",
+          "parameters": [
+            {
+              "name": "fid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "app_user",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "DB Error"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "402": {
+              "description": "Payment Required"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accept": {
+                      "example": "Accepted",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/scrap/": {
+        "get": {
+          "tags": ["scrap"],
+          "description": "자신이 스크랩한 게시글을 보여주는 API",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "scraplist": [
+                      {
+                        "_id": "63c50268a0ff5e4980e88120",
+                        "title": "dfajnjkjadsfnk",
+                        "content": "sad54654654648489fasdf4d8asf984da48f4das465fdas456fa4ds6fas45f5fdsa46fsa456",
+                        "author": "hehehehehehehehehe",
+                        "categories": ["1", "7"],
+                        "regions": [
+                          {
+                            "region": "경기도",
+                            "district": "안양시 만안구",
+                            "region_code": "4117100000"
+                          },
+                          {
+                            "region": "경기도",
+                            "district": "부천시",
+                            "region_code": "4119000000"
+                          }
+                        ],
+                        "state": "Recruiting",
+                        "date": "2023-01-17T00:00:00.000Z",
+                        "TO": 3,
+                        "regularity": true,
+                        "thumbnail": "https://ourb.s3.ap-northeast-2.amazonaws.com/5911673930227303.jpg",
+                        "fid": 42,
+                        "__v": 0
+                      },
+                      {
+                        "categories": ["1"],
+                        "regions": [
+                          {
+                            "region": "경기도",
+                            "district": "안양시 만안구",
+                            "region_code": "4117100000"
+                          }
+                        ],
+                        "_id": "63c1040a401bdc91eff130d2",
+                        "title": "dmdmkdkdkdkdkkdkd",
+                        "content": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                        "author": "sssss",
+                        "state": "Closed",
+                        "date": "2020-01-01T00:00:00.000Z",
+                        "TO": 5,
+                        "regularity": false,
+                        "thumbnail": "https://ourb.s3.ap-northeast-2.amazonaws.com/3081673593866170.jpg",
+                        "fid": 34,
+                        "__v": 0
+                      },
+                      {
+                        "categories": ["1", "7", "5"],
+                        "regions": [
+                          {
+                            "region_code": "4691000000",
+                            "region": "전라남도",
+                            "district": "신안군"
+                          }
+                        ],
+                        "_id": "63c1045f401bdc91eff130e0",
+                        "title": "fiffffffffffffffffffffff",
+                        "content": "adsddsasfm;fealfmd;smsd;lmdsklfsndajkfsldnkjldasflkdsfjlkdsfjaljasfdljkfsdajlfsda",
+                        "author": "sssss",
+                        "state": "Recruiting",
+                        "date": "2020-01-01T00:00:00.000Z",
+                        "TO": 5,
+                        "regularity": false,
+                        "thumbnail": "https://ourb.s3.ap-northeast-2.amazonaws.com/2391673593951802.jpg",
+                        "fid": 35,
+                        "__v": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/scrap/check/{fid}": {
+        "post": {
+          "tags": ["scrap"],
+          "description": "특정 게시글을 scrap하는 API",
+          "parameters": [
+            {
+              "name": "fid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "DB Error : Bad Request"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/scrap/uncheck/{fid}": {
+        "delete": {
+          "tags": ["scrap"],
+          "description": "기존의 scrap을 취소하는 API",
+          "parameters": [
+            {
+              "name": "fid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "it is unscraped feed or deleted feed"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/notice/": {
+        "get": {
+          "tags": ["notice"],
+          "description": "유저가 받은 알림 리스트를 제공하는 API",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string (JWT token)"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "notices": [
+                      {
+                        "_id": "63d751368a64a16d4a705672",
+                        "user": "nickname3",
+                        "title": "신청한 모임 매칭이 완료되었습니다.",
+                        "body": "모임 게시글에서 결과를 확인해주세요!",
+                        "isread": false,
+                        "link": "4",
+                        "type": "match",
+                        "__v": 0
+                      },
+                      {
+                        "_id": "63d755491da946d6afed735a",
+                        "user": "nickname1",
+                        "title": "모임 매칭 신청이 들어왔습니다.",
+                        "body": "매칭 신청화면에서 확인해주세요!",
+                        "isread": false,
+                        "link": "4",
+                        "type": "match",
+                        "__v": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/notice/updateTimestamp": {
+        "patch": {
+          "tags": ["notice"],
+          "description": "알림을 보낼 device token의 유효성을 검증하는 API",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string (JWT token)"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "device token was not stored."
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "device_token": {
+                      "example": "fdsajnlAS1651532sa23124#Q@N",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/chat/": {
+        "get": {
+          "tags": ["chat"],
+          "description": "유저가 속한 채팅방의 list를 제공하는 API",
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "schema": {
+                "type": "string (JWT token)"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "chats": [
+                      {
+                        "_id": "63e211a99d81c0024c95cedb",
+                        "room_id": "e57425b7-2fa0-4b59-a9aa-8ef9aec656ca",
+                        "title": "test3방",
+                        "fid": 1,
+                        "thumbnail": "https://ourb.s3.ap-northeast-2.amazonaws.com/%EC%B9%B4%ED%85%8C%EC%BD%94%EB%A6%AC+%EC%9D%B4%EB%AF%B8%EC%A7%80/0.jpg",
+                        "admin": {
+                          "_id": "63e1f8b7fa112c7aeb45fc25",
+                          "uid": "test3",
+                          "password": "$2b$10$GTKeq4Irb7wv77ATVP0WH.PWxPkc9P7cxeOoY4hdrm48CUChiszEu",
+                          "name": "testuser3",
+                          "sex": "Memale",
+                          "birth": "2003-12-11T00:00:00.000Z",
+                          "email": "test3@gamil.com",
+                          "certificationKey": "3333333333",
+                          "profileImg": "https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952",
+                          "nickname": "nickname3",
+                          "description": "4894461561asdadas15s1",
+                          "interest_region": "2871000000",
+                          "hobbies": ["4", "3"],
+                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzZTFmOGI3ZmExMTJjN2FlYjQ1ZmMyNSIsInVpZCI6InRlc3QzIiwibmFtZSI6InRlc3R1c2VyMyIsInNleCI6Ik1lbWFsZSIsImJpcnRoIjoiMjAwMy0xMi0xMVQwMDowMDowMC4wMDBaIiwiZW1haWwiOiJ0ZXN0M0BnYW1pbC5jb20iLCJjZXJ0aWZpY2F0aW9uS2V5IjoiMzMzMzMzMzMzMyIsInByb2ZpbGVJbWciOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2MTAwMDBlNWViY2RjZTc2MjBkYzk0MGRiMDc5YmY0OTUyIiwibmlja25hbWUiOiJuaWNrbmFtZTMiLCJkZXNjcmlwdGlvbiI6IjQ4OTQ0NjE1NjFhc2RhZGFzMTVzMSIsImludGVyZXN0X3JlZ2lvbiI6IjI4NzEwMDAwMDAiLCJob2JiaWVzIjpbIjQiLCIzIl0sInJlZ2lvbjEiOiLsnbjsspzqtJHsl63si5wiLCJyZWdpb24yIjoi6rCV7ZmU6rWwIn0sImlhdCI6MTY3NTc1NzAzNn0.E6vgLrkR-HjfbBSVdX2UaEyS-gSeUWFyTmC4VHba8C8"
+                        },
+                        "users": [
+                          {
+                            "uid": "test3",
+                            "nickname": "nickname3",
+                            "profileImg": "https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952"
+                          },
+                          {
+                            "uid": "test2",
+                            "nickname": "nickname2",
+                            "profileImg": "https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952"
+                          }
+                        ],
+                        "block": [],
+                        "__v": 7
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/chat/{room_id}": {
+        "get": {
+          "tags": ["chat"],
+          "description": "유저가 속한 채팅방의 chatting log를 제공하는 API",
+          "parameters": [
+            {
+              "name": "room_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "success": true,
+                    "chats": [
+                      {
+                          "_id": "63e212a69d81c0024c95cee3",
+                          "user": "nickname3",
+                          "message": "방새로팜팜",
+                          "created": "2023-02-07T08:58:14.562Z",
+                          "room_id": "e57425b7-2fa0-4b59-a9aa-8ef9aec656ca",
+                          "__v": 0
+                      },
+                      {
+                          "_id": "63e307588d092336413980d3",
+                          "user": "nickname2",
+                          "message": "ㅎㅇㅎㅇ",
+                          "created": "2023-02-08T02:22:16.704Z",
+                          "room_id": "e57425b7-2fa0-4b59-a9aa-8ef9aec656ca",
+                          "__v": 0
+                      }
+                  ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "in": "header",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }
