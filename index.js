@@ -16,6 +16,9 @@ app.use(express.json({ extended: false }));
 const connect = require("./db");
 connect();
 
+const api = require("./routes/index.js");
+app.use("/", api);
+
 const port = 8080;
 
 //Swagger
