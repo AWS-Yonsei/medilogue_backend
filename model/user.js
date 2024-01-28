@@ -24,10 +24,12 @@ const userSchema = mongoose.Schema({
   },
   type: {
     type: String,
-    required: true,
+    enum: ['Doctor', 'User'],
+    default: 'User'
   },
-  sex: {
+  gender: {
     type: String,
+    enum: ['Male', 'Female'],
   },
   birth: {
     type: Date,
@@ -42,7 +44,7 @@ const userSchema = mongoose.Schema({
     type: String,
   },
   tokenExp: {
-    type: Number,
+    type: Date,
   },
 });
 
@@ -76,9 +78,8 @@ userSchema.methods.generateToken = async function (callback) {
       uid: user.uid,
       name: user.name,
       type: user.type,
-      sex: user.sex,
+      sex: user.gender,
       birth: user.birth,
-      profileImg: user.profileImg,
       chatRooms: user.chatRooms,
     },
   };
