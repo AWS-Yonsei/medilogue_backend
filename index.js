@@ -73,15 +73,10 @@ io.on("connection", (socket) => {
       //톡방 title과 썸네일의 경우 생성 페이지에서 받아와야함.
       let newRoom = new Room({
         room_id: v4(), //uuid v4를 이용해서 random unique id 얻어냄.
-        title: data.title,
-        fid: data.fid,
-        thumbnail: data.thumbnail,
-        admin: user,
       });
       newRoom.users.push({
         uid: uid,
         name: user_data.user.name,
-        profileImg: user_data.user.profileImg,
       });
 
       await newRoom.save((err) => {
