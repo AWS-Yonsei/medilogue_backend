@@ -1,4 +1,7 @@
 const express = require("express");
+const cors = require("cors");
+const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
 const { Server } = require("socket.io");
 const http = require("http");
 const v4 = require("uuid").v4;
@@ -8,19 +11,37 @@ const swaggerFile = require("./swagger-output.json");
 const User = require("./model/user");
 const Room = require("./model/chatRoom");
 const Message = require("./model/message");
+const utils = require("./utils.js");
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+var corsOptions = {
+  origin: "*",
+};
+
+app.use(cors(corsOptions));
+//Express 4.16.0버전 부터 body-parser의 일부 기능이 익스프레스에 내장 body-parser 연결
+app.use(
+  cookieSession({
+    name: "medilogue-session",
+    secret: "COOKIE_SECRET", // should use as secret environment variable
+    httpOnly: true,
+  })
+);
+
 app.use(express.json({ extended: false }));
+app.use(cookieParser());
+
 const connect = require("./db");
 connect();
 
 const api = require("./routes/index.js");
 app.use("/", api);
 
-const port = 8080;
+const PORT = process.env.PORT || 8080;
+
 
 //Swagger
 app.use(
@@ -30,10 +51,9 @@ app.use(
 );
 
 
-
 app.get("/", (req, res) => res.send("Hi Claire Welcome to Node.js"));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+//app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 //socket
 function countRoom(roomName) {
@@ -64,16 +84,17 @@ io.on("connection", (socket) => {
   socket.on("join_room", async (data) => {
     const user_data = utils.parseJWTPayload(data.token);
     let uid = user_data.user.uid;
-    let user = await User.findOne({ uid: uid });
-    let room_id = data.room;
-
-    if (data.room == undefined || countRoom(data.room) == 0) {
+    //let user = await User.findOne({ uid: uid });
+    let room = await Room.findOne({ room_id: data.room });
+    console.log("Room : ", room);
+    if (room == undefined || countRoom(data.room) == 0 || countRoom(data.room) == undefined) {
       //방이 처음 만들어짐.
       //피드와 연결해서 초기 톡방 설정 구현
       //톡방 title과 썸네일의 경우 생성 페이지에서 받아와야함.
       let newRoom = new Room({
         room_id: v4(), //uuid v4를 이용해서 random unique id 얻어냄.
       });
+
       newRoom.users.push({
         uid: uid,
         name: user_data.user.name,
@@ -84,21 +105,19 @@ io.on("connection", (socket) => {
           console.log(err);
         }
       });
-
       room_id = newRoom.room_id;
     } else {
       // user를 room에 push하면 된다.
-      let room = await Room.findOne({ room_id: room_id });
       let find_user = await Room.findOne({
-        users: { $elemMatch: { uid: uid } },
         room_id: room_id,
+        users: { $elemMatch: { uid: uid } },
       });
-      console.log(find_user);
-      if (find_user == undefined) {
+      console.log("find_user ", find_user);
+      if (find_user == null) {
         room.users.push({
           uid: uid,
           name: user_data.user.name,
-          profileImg: user_data.user.profileImg,
+          //profileImg: user_data.user.profileImg,
         });
         room.save();
       }
@@ -128,12 +147,13 @@ io.on("connection", (socket) => {
   //socket.emit : 앱에서 기존 메시지를 읽을 수 있도록 서버가 채팅 기록을 불러와야 함. (emit : send의 역할을 함)
   //socket.on("message" : 내가 앱에서 채팅을 쳤을 때 (on : receive의 역할을 함.)
   socket.on("new_message", async (data) => {
+    console.log(data);
     const user_data = utils.parseJWTPayload(data.token);
     let newMessage = new Message({
-      user: user_data.user.nickname,
+      user: user_data.user.name,
       content: data.content,
       createdAt: new Date(),
-      room_id: data.room,
+      chatRoom_id: data.room,
     });
     await newMessage.save((err) => {
       if (err) console.log(err);
@@ -146,4 +166,8 @@ io.on("connection", (socket) => {
     let room = await Room.findOne({ room_id: data.room });
     console.log(room)
   });
+});
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
