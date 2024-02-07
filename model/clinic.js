@@ -9,7 +9,7 @@ const clinicSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    doctors: [{
+    doctor: {
         name: {
             type: String,
             required: true
@@ -18,8 +18,8 @@ const clinicSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }],
-    patients: [{
+    },
+    patient: {
         name: {
             type: String,
             required: true
@@ -33,7 +33,10 @@ const clinicSchema = new mongoose.Schema({
             enum: ['Male', 'Female'],
             required: true
         }
-    }]
+    },
+    date: {
+        type: Date
+    }
 });
 
 const Clinic = mongoose.model('Clinic', clinicSchema);
