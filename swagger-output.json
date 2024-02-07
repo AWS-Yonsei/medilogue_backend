@@ -1339,38 +1339,18 @@
                       {
                         "_id": "63e211a99d81c0024c95cedb",
                         "room_id": "e57425b7-2fa0-4b59-a9aa-8ef9aec656ca",
-                        "title": "test3방",
-                        "fid": 1,
-                        "thumbnail": "https://ourb.s3.ap-northeast-2.amazonaws.com/%EC%B9%B4%ED%85%8C%EC%BD%94%EB%A6%AC+%EC%9D%B4%EB%AF%B8%EC%A7%80/0.jpg",
-                        "admin": {
-                          "_id": "63e1f8b7fa112c7aeb45fc25",
-                          "uid": "test3",
-                          "password": "$2b$10$GTKeq4Irb7wv77ATVP0WH.PWxPkc9P7cxeOoY4hdrm48CUChiszEu",
-                          "name": "testuser3",
-                          "sex": "Memale",
-                          "birth": "2003-12-11T00:00:00.000Z",
-                          "email": "test3@gamil.com",
-                          "certificationKey": "3333333333",
-                          "profileImg": "https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952",
-                          "nickname": "nickname3",
-                          "description": "4894461561asdadas15s1",
-                          "interest_region": "2871000000",
-                          "hobbies": ["4", "3"],
-                          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzZTFmOGI3ZmExMTJjN2FlYjQ1ZmMyNSIsInVpZCI6InRlc3QzIiwibmFtZSI6InRlc3R1c2VyMyIsInNleCI6Ik1lbWFsZSIsImJpcnRoIjoiMjAwMy0xMi0xMVQwMDowMDowMC4wMDBaIiwiZW1haWwiOiJ0ZXN0M0BnYW1pbC5jb20iLCJjZXJ0aWZpY2F0aW9uS2V5IjoiMzMzMzMzMzMzMyIsInByb2ZpbGVJbWciOiJodHRwczovL2kuc2Nkbi5jby9pbWFnZS9hYjY3NjE2MTAwMDBlNWViY2RjZTc2MjBkYzk0MGRiMDc5YmY0OTUyIiwibmlja25hbWUiOiJuaWNrbmFtZTMiLCJkZXNjcmlwdGlvbiI6IjQ4OTQ0NjE1NjFhc2RhZGFzMTVzMSIsImludGVyZXN0X3JlZ2lvbiI6IjI4NzEwMDAwMDAiLCJob2JiaWVzIjpbIjQiLCIzIl0sInJlZ2lvbjEiOiLsnbjsspzqtJHsl63si5wiLCJyZWdpb24yIjoi6rCV7ZmU6rWwIn0sImlhdCI6MTY3NTc1NzAzNn0.E6vgLrkR-HjfbBSVdX2UaEyS-gSeUWFyTmC4VHba8C8"
-                        },
                         "users": [
                           {
                             "uid": "test3",
-                            "nickname": "nickname3",
+                            "name": "name3",
                             "profileImg": "https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952"
                           },
                           {
                             "uid": "test2",
-                            "nickname": "nickname2",
+                            "name": "name2",
                             "profileImg": "https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952"
                           }
                         ],
-                        "block": [],
                         "__v": 7
                       }
                     ]
@@ -1407,20 +1387,20 @@
                     "success": true,
                     "chats": [
                       {
-                          "_id": "63e212a69d81c0024c95cee3",
-                          "user": "nickname3",
-                          "message": "방새로팜팜",
-                          "created": "2023-02-07T08:58:14.562Z",
-                          "room_id": "e57425b7-2fa0-4b59-a9aa-8ef9aec656ca",
-                          "__v": 0
+                        "user": "Emily Davis",
+                        "content": "hello",
+                        "createdAt": "2024-02-02T10:33:53.792Z",
+                        "room_id": "214a774d-294e-4773-b98d-4a6923cbc159",
+                        "_id": "65bcc11b303f5bda3e4e47c2",
+                        "__v": 0
                       },
                       {
-                          "_id": "63e307588d092336413980d3",
-                          "user": "nickname2",
-                          "message": "ㅎㅇㅎㅇ",
-                          "created": "2023-02-08T02:22:16.704Z",
-                          "room_id": "e57425b7-2fa0-4b59-a9aa-8ef9aec656ca",
-                          "__v": 0
+                        "user": "John Doe",
+                        "content": "hello",
+                        "createdAt": "2024-02-02T10:16:59.317+00:00",
+                        "room_id": "214a774d-294e-4773-b98d-4a6923cbc159",
+                        "_id": "65bcc511c5c94895f5e52be6",
+                        "__v": 0
                       }
                   ]
                   }
