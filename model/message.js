@@ -13,8 +13,9 @@ const messageSchema = mongoose.Schema({
   createdAt: {
     type: Date,
   },
-  chatRoom_id: {
+  room_id: {
     type: String,
+    required: true
   },
 });
 

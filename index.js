@@ -153,7 +153,7 @@ io.on("connection", (socket) => {
       user: user_data.user.name,
       content: data.content,
       createdAt: new Date(),
-      chatRoom_id: data.room,
+      room_id: data.room,
     });
     await newMessage.save((err) => {
       if (err) console.log(err);
