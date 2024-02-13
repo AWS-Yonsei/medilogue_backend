@@ -18,14 +18,28 @@ const missionSchema = new mongoose.Schema({
         default: 'active'
     },
     patient: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        required: true
+        uid: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        }
     },
     doctor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        required: true
+        uid: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        specialization: {
+            type: String,
+            required: true
+        }
     },
     createdAt: {
         type: Date,
