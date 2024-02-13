@@ -1,0 +1,20 @@
+{
+    "doctor_id": "user4",
+    "mission_rates": [
+        {
+          "uid": "user2",
+          "name": "Jane Smith",
+          "success_rate": 70
+        },
+        {
+          "uid": "user3",
+          "name": "Robert Johnson",
+          "success_rate": 80
+        },
+        {
+            "uid": "user8",
+            "name": "Sophia Miller",
+            "success_rate": 66.7
+        }
+    ]
+}
