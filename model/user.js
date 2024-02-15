@@ -46,6 +46,10 @@ const userSchema = mongoose.Schema({
   tokenExp: {
     type: Date,
   },
+  quizResults: {
+    type: Array,
+  }
+
 });
 
 userSchema.pre("save", function (next) {
