@@ -31,8 +31,14 @@ const userSchema = mongoose.Schema({
     type: String,
     enum: ['Male', 'Female'],
   },
-  birth: {
-    type: Date,
+  age: {
+    type: Number,
+  },
+  height:{
+    type: Number,
+  },
+  weight: {
+    type: Number,
   },
   profileImg: {
     type: String,
