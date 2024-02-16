@@ -1,0 +1,36 @@
+{
+    "uid": "user2",
+    "category": "diabetes",
+    "quiz_results": [
+        {
+          "qid": 1,
+          "content": "Jane Smith",
+          "result" : true,
+          "comment": "Great job! Keep it up!"
+        },
+        {
+          "qid": 2,
+          "content": "Jane Smith",
+          "result" : true,
+          "comment": "Great job! Keep it up!"
+        },
+        {
+          "qid": 3,
+          "content": "Jane Smith",
+          "result" : false,
+          "comment": "정답은 false입니다. 식사 후 혈당이 급격하게 오르는 것을 막기 위해서는 GI지수가 낮은 음식을 섭취해야 합니다."
+        },
+        {
+          "qid": 4,
+          "content": "Jane Smith",
+          "result" : true,
+          "comment": "Great job! Keep it up!"
+        },
+        {
+          "qid": 5,
+          "content": "Jane Smith",
+          "result" : false,
+          "comment": "정답은 true입니다."
+        }
+    ]
+}

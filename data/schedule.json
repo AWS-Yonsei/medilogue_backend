@@ -1,0 +1,20 @@
+[
+    {
+        "title": "당뇨병 관리 상담",
+        "content": "Hello, this is a test message",
+        "startTime": "2023-02-15T00:00:00Z",
+        "attendee": "user2"
+    },
+    {
+        "title": "고혈압 관리 상담",
+        "content": "Hello, this is a test message",
+        "startTime": "2023-02-15T01:00:00Z",
+        "attendee": "user1"
+    },
+    {
+        "title": "당뇨 관리 상담",
+        "content": "Hello, this is a test message",
+        "startTime": "2023-02-18T01:00:00Z",
+        "attendee": "user2"
+    }
+]
