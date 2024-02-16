@@ -1,12 +1,13 @@
 const express = require("express");
 const Mission = require("../../model/mission");
 const router = express.Router();
+const utils = require("../../utils.js");
+
 
 router.post("/", async (req, res) => {
   try {
     const { title, content, startDate, endDate, doctor_id, doctor_name, specialization, patient_id, patient_name } =
       req.body;
-    console.log(req.body);
     let mission= new Mission({
       title: title,
       content: content,
