@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
 
 const medicalSchema = new mongoose.Schema({
-  ID: {
-    type: Number,
-    required: true
-  },
-  No_Pation: {
-    type: Number,
+  uid: {
+    type: String,
     required: true
   },
   Gender: {
@@ -53,9 +49,9 @@ const medicalSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  CLASS: {
-    type: Number,
-    required: true
+  timestamp: {
+    type: Date,
+    default: Date.now
   }
 });
 
