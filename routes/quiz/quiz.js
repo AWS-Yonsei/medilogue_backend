@@ -1,7 +1,3 @@
-//post : user가 quiz를 응시한 결과를 가져온 다음 저장하는 API
-//get : 퀴즈 목록을 가져오는 API
-//elastic에 바로 저장????????
-
 const express = require("express");
 const router = express.Router();
 
@@ -57,7 +53,7 @@ router.post("/result", async (req, res) => {
   }
 });
 
-router.get("/result", async (req, res) => {
+router.get("/feedback", async (req, res) => {
   //환자에게 퀴즈에 대한 피드백을 보여주는 API
   //filter를 이용해서 틀린 문제만 가져온다.
   try {

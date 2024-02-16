@@ -5,20 +5,6 @@ const Room = require("../../model/chatRoom");
 const router = express.Router();
 require("dotenv").config();
 
-router.get("/", async (req, res) => {
-  let categories = await Category.find();
-  if (categories == null || categories.length == 0) {
-    return res.status(400).json({
-      success: false,
-      errors: "Failed to load category.",
-    });
-  }
-  return res.status(200).json({
-    success: true,
-    categories: categories,
-  });
-});
-
 router.post("/check-duplicate", async (req, res) => {
   const uid = req.body.uid;
   let user = await User.findOne({ uid: uid });
