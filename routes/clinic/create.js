@@ -6,8 +6,7 @@ router.post("/", async (req, res) => {
   try {
     const { title, content, doctor_name, specialization, patient_name ,patient_age, patient_gender } =
       req.body;
-    //const token = req.header("authorization").split(" ")[1];
-    //const user_data = utils.parseJWTPayload(token);
+
     console.log(req.body);
     let clinic = new Clinic({
       title: title,

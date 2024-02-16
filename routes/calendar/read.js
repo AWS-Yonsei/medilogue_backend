@@ -10,7 +10,7 @@ router.get("/:date", async (req, res) => {
     const date = new Date(req.params.date);
     const year = date.getFullYear();
     const month = date.getMonth();
-    const token = req.header("authorization").split(" ")[1];
+    const token = req.header("Authorization").split(" ")[1];
     const user_data = utils.parseJWTPayload(token);
     let schedules = await Schedule.find({
         uid: user_data.user.uid,

@@ -7,7 +7,7 @@ const utils = require("../../utils.js");
 router.get("/", async (req, res) => {
     //의사에게 미션을 관리중인 환자들의 목록들을 제공함.
     try {
-      const token = req.header("authorization").split(" ")[1];
+      const token = req.header("Authorization").split(" ")[1];
       const user_data = utils.parseJWTPayload(token);
       let missions;
       if(user_data.user.type=="Doctor"){
@@ -60,7 +60,7 @@ router.get("/", async (req, res) => {
 router.get("/:date", async (req, res) => {
   //환자에게 오늘의 미션 목록들을 제공함.
   try {
-    const token = req.header("authorization").split(" ")[1];
+    const token = req.header("Authorization").split(" ")[1];
     const user_data = utils.parseJWTPayload(token);
     //날짜 처리를 해야 함.
     let missions = await Mission.find({

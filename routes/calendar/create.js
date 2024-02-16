@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
     try {
         // Get the schedule data from req.body
         const {content, startTime, attendee } = req.body;
-        const token = req.header("authorization").split(" ")[1];
+        const token = req.header("Authorization").split(" ")[1];
         const user_data = utils.parseJWTPayload(token);
 
         // Check if the schedule already exists

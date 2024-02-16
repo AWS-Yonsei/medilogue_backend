@@ -57,7 +57,7 @@ router.get("/feedback", async (req, res) => {
   //환자에게 퀴즈에 대한 피드백을 보여주는 API
   //filter를 이용해서 틀린 문제만 가져온다.
   try {
-    const token = req.header("authorization").split(" ")[1];
+    const token = req.header("Authorization").split(" ")[1];
     const user_data = utils.parseJWTPayload(token);
     let user = await User.findOne({uid: user_data.user.uid});
     if(user != undefined){

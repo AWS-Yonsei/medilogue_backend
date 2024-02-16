@@ -8,7 +8,7 @@ router.put("/", async (req, res) => {
     try {
         const {sid, content, startDate, attendee } = req.body;
         
-        const token = req.header("authorization").split(" ")[1];
+        const token = req.header("Authorization").split(" ")[1];
         const user_data = utils.parseJWTPayload(token);
         const schedule = await Schedule.findOne({
             _id: sid,

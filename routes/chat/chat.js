@@ -11,7 +11,7 @@ require("dotenv").config();
 router.get("/", async (req, res) => {
   try {
     //유저가 속한 채팅방 list를 제공하는 API
-    const token = req.header("authorization").split(" ")[1];
+    const token = req.header("Authorization").split(" ")[1];
     const user_data = utils.parseJWTPayload(token);
     let rooms = await Room.find({
       users: { $elemMatch: { uid: user_data.user.uid } },
