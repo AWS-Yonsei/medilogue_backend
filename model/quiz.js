@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const autoIdSetter = require("./auto_increment.js");
 
 const quizSchema = mongoose.Schema({
-  qid: {
-    type: Number
+  category: {
+    type: String,
+    required: true
   },
   question: {
     type: String,
@@ -17,8 +17,7 @@ const quizSchema = mongoose.Schema({
     type: String,
   }
 });
-autoIdSetter(quizSchema, mongoose, "quiz", "qid");
-// 데이터베이스 모델을 정의
+
 const quiz = mongoose.model("quiz", quizSchema);
 
 module.exports = quiz;
