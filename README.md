@@ -19,7 +19,7 @@
  
  - test data는 data 폴더에서 확인할 수 있으며, 데이터 초기화는 mongodb shell을 설치한 이후 window의 경우 ABM_back component에서 ```set_data.bat```을 실행하고, 이외의 mac, linux의 경우 ```set_data.sh``` 를 실행해서 초기화 할 수 있다.
  
- - backend API 문서는 backend component를 실행하고, ```http://localhost:3000/api-docs``` URL에서 확인할 수 있다.
+ - backend API 문서는 backend component를 실행하고, ```http://localhost:8080/api-docs``` URL에서 확인할 수 있다.
  
  - 백엔드 자체적으로 데이터 검증/테스트를 할 경우에는 POSTMAN을 주로 사용하여 테스트하였고, front-end와의 연동하여 테스트를 할 경우에는 front component도 실행하여 에뮬레이터에서 테스트하였다.
 
@@ -30,4 +30,4 @@
 
 - ```node index.js```를 통해서 backend component를 실행한다.
 
-- open web browser and connect ```localhost:3000```
+- open web browser and connect ```localhost:8080```
