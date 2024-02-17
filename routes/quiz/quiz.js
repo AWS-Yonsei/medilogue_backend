@@ -6,6 +6,56 @@ const User = require("../../model/user");
 
 const utils = require("../../utils.js");
 
+router.get("/", async (req, res) => {
+  //퀴즈 목록을 불러오는 API
+  try {
+    const quizzes = await Quiz.find();
+    console.log(quizzes);
+    const quiz_group = quizzes.reduce((acc, quiz) => {
+      const quiz_category = quiz.category;
+      if (!acc[quiz_category]) {
+        acc[quiz_category] = [];
+      }
+      acc[quiz_category].push({quiz_id: quiz._id, quiz_content: quiz.content, quiz_answer: quiz.answer});
+      return acc;
+    }, {});
+
+    let quiz_list = new Array();
+    for (const category in quiz_group) {
+      const quiz = quiz_group[category];
+      quiz_list.push({category:category, quiz_cnt: quiz.length});
+    }
+    
+    return res.status(200).json({
+      success: true,
+      quiz_list: quiz_list,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      success: false,
+      error: "Server Error",
+    });
+  }
+});
+
+router.get("/:category", async (req, res) => {
+  //해당 카테고리에 속한 문제들을 불러오는 API
+  //구현 우선순위 낮음
+  try {
+    return res.status(200).json({
+      success: true,
+      quizzes: quizzes,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      success: false,
+      error: "Server Error",
+    });
+  }
+});
+
 router.post("/result", async (req, res) => {
   //퀴즈 응시 후, 결과를 저장하는 API
   /*
