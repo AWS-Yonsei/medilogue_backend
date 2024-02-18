@@ -10,6 +10,8 @@ const clinic = require("./clinic/index.js")
 const mission = require("./mission/index.js")
 const quiz = require("./quiz/quiz.js")
 const calendar = require("./calendar/index.js")
+const status = require("./user/status.js")
+const mypage = require("./user/mypage.js")
 
 router.use("/register", register);
 router.use("/auth", auth);
@@ -20,5 +22,7 @@ router.use("/clinic", clinic);
 router.use("/mission", mission);
 router.use("/quiz", quiz);
 router.use("/calendar", calendar);
+router.use("/status", status);
+router.use("/mypage", mypage);
 
 module.exports = router;

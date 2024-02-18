@@ -13,13 +13,12 @@ router.post("/", async (req, res) => {
   try {
     // id를 비교해서 user가 이미 존재하는지 확인
     // 존재한다면 return해서 뒤의 코드를 실행하지 않음.
-    console.log(uid);
     let user = await User.findOne({ uid: uid });
     console.log(user);
     if (!user) {
-      return res.status(400).json({
+      return res.status(404).json({
         loginSuccess: false,
-        message: "login failed",
+        message: "user not found",
       });
     }
 
@@ -27,7 +26,7 @@ router.post("/", async (req, res) => {
       if (!isMatch)
         return res.status(400).json({
           loginSuccess: false,
-          message: "password is not match",
+          message: "password is not matched",
         });
 
       //jwt 생성하는 부분에서 에러 발생

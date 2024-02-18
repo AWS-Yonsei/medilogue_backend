@@ -3,13 +3,14 @@ const router = express.Router();
 const utils = require("../../utils.js");
 const Schedule = require("../../model/schedule.js");
 
-router.put("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
     //스케줄을 수정한다.
     try {
-        const {sid, content, startDate, attendee } = req.body;
+        const {content, startDate, attendee } = req.body;
         
         const token = req.header("Authorization").split(" ")[1];
         const user_data = utils.parseJWTPayload(token);
+        const sid = req.params.id;
         const schedule = await Schedule.findOne({
             _id: sid,
             uid: user_data.user.uid,
