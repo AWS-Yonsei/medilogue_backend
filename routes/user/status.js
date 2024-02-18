@@ -18,7 +18,7 @@ router.get("/:uid", async (req, res) => {
           "patient.name": req.params.uid
         });
         let medicals = await Medical.find({
-          "patient.name": req.params.uid
+          uid: req.params.uid
         });
         let user = await User.findOne({ uid: req.params.uid });
 
@@ -29,7 +29,7 @@ router.get("/:uid", async (req, res) => {
         });
     }
     else{
-        return res.status(400).json({
+        return res.status(403).json({
           message: "invalid access",
         });
     }
