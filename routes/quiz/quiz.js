@@ -9,8 +9,11 @@ const utils = require("../../utils.js");
 router.get("/", async (req, res) => {
   //퀴즈 목록을 불러오는 API
   try {
+    const token = req.header("Authorization").split(" ")[1];
+    const user_data = utils.parseJWTPayload(token);
+    let user = await User.findOne({ uid: user_data.user.uid });
+
     const quizzes = await Quiz.find();
-    console.log(quizzes);
     const quiz_group = quizzes.reduce((acc, quiz) => {
       const quiz_category = quiz.category;
       if (!acc[quiz_category]) {
@@ -23,7 +26,12 @@ router.get("/", async (req, res) => {
     let quiz_list = new Array();
     for (const category in quiz_group) {
       const quiz = quiz_group[category];
-      quiz_list.push({category:category, quiz_cnt: quiz.length});
+      if(user.quizResults.find(data => data.category === category) === undefined){
+        quiz_list.push({category:category, quiz_cnt: quiz.length, take_test: false});
+      }
+      else{
+        quiz_list.push({category:category, quiz_cnt: quiz.length, take_test: true});
+      }
     }
     
     return res.status(200).json({
