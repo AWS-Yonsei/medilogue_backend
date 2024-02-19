@@ -5,7 +5,9 @@
     "name": "John Doe",
     "type": "Doctor",
     "gender": "Male",
-    "birth": "1985-03-15"
+    "age": 38,
+    "height": 180,
+    "weight": 80
   },
   {
     "uid": "user2",
@@ -13,7 +15,9 @@
     "name": "Jane Smith",
     "type": "User",
     "gender": "Female",
-    "birth": "1990-07-22"
+    "age": 33,
+    "height": 160,
+    "weight": 60
   },
   {
     "uid": "user3",
@@ -21,7 +25,9 @@
     "name": "Robert Johnson",
     "type": "User",
     "gender": "Male",
-    "birth": "1988-11-03"
+    "age": 35,
+    "height": 170,
+    "weight": 70
   },
   {
     "uid": "user4",
@@ -29,7 +35,9 @@
     "name": "Emily Davis",
     "type": "Doctor",
     "gender": "Female",
-    "birth": "1995-05-12"
+    "age": 27,
+    "height": 165,
+    "weight": 55
   },
   {
     "uid": "user5",
@@ -37,7 +45,9 @@
     "name": "Michael Brown",
     "type": "User",
     "gender": "Male",
-    "birth": "1987-09-29"
+    "age": 36,
+    "height": 175,
+    "weight": 75
   },
   {
     "uid": "user6",
@@ -45,7 +55,9 @@
     "name": "Olivia Taylor",
     "type": "Doctor",
     "gender": "Female",
-    "birth": "1993-02-18"
+    "age": 31,
+    "height": 155,
+    "weight": 45
   },
   {
     "uid": "user7",
@@ -53,7 +65,9 @@
     "name": "William Anderson",
     "type": "Doctor",
     "gender": "Male",
-    "birth": "1992-06-07"
+    "age": 30,
+    "height": 185,
+    "weight": 85
   },
   {
     "uid": "user8",
@@ -61,7 +75,9 @@
     "name": "Sophia Miller",
     "type": "User",
     "gender": "Female",
-    "birth": "1989-12-25"
+    "age": 34,
+    "height": 150,
+    "weight": 50
   },
   {
     "uid": "user9",
@@ -69,7 +85,9 @@
     "name": "James Wilson",
     "type": "Doctor",
     "gender": "Male",
-    "birth": "1994-04-03"
+    "age": 34,
+    "height": 190,
+    "weight": 90
   },
   {
     "uid": "user10",
@@ -77,8 +95,9 @@
     "name": "Emma Moore",
     "type": "User",
     "gender": "Female",
-    "birth": "1986-08-14",
-    "profileImg": "profile10.jpg"
+    "age": 20,
+    "height": 161,
+    "weight": 46
   },
   {
     "uid": "user11",
@@ -86,7 +105,9 @@
     "name": "Daniel Thomas",
     "type": "Doctor",
     "gender": "Male",
-    "birth": "1991-01-01"
+    "age": 56,
+    "height": 175,
+    "weight": 62
   },
   {
     "uid": "user12",
@@ -94,7 +115,9 @@
     "name": "Ella Davis",
     "type": "User",
     "gender": "Female",
-    "birth": "1985-05-20"
+    "age": 67,
+    "height": 160,
+    "weight": 55
   },
   {
     "uid": "user13",
@@ -102,7 +125,9 @@
     "name": "Ryan Garcia",
     "type": "Doctor",
     "gender": "Male",
-    "birth": "1997-09-12"
+    "age": 49,
+    "height": 179,
+    "weight": 93
   },
   {
     "uid": "user14",
@@ -110,7 +135,9 @@
     "name": "Ava Taylor",
     "type": "User",
     "gender": "Female",
-    "birth": "1988-03-29"
+    "age": 71,
+    "height": 172,
+    "weight": 85
   },
   {
     "uid": "user15",
@@ -118,7 +145,9 @@
     "name": "Christopher Jackson",
     "type": "Doctor",
     "gender": "Male",
-    "birth": "1996-06-22"
+    "age": 46,
+    "height": 170,
+    "weight": 73
   },
   {
     "uid": "user16",
@@ -126,7 +155,9 @@
     "name": "Grace Williams",
     "type": "User",
     "gender": "Female",
-    "birth": "1989-10-05"
+    "age": 22,
+    "height": 160,
+    "weight": 49
   },
   {
     "uid": "user17",
@@ -134,7 +165,9 @@
     "name": "Nicholas Taylor",
     "type": "User",
     "gender": "Male",
-    "birth": "1993-04-17"
+    "age": 59,
+    "height": 170,
+    "weight": 102
   },
   {
     "uid": "user18",
@@ -142,7 +175,9 @@
     "name": "Isabella Martin",
     "type": "User",
     "gender": "Female",
-    "birth": "1990-02-28"
+    "age": 45,
+    "height": 160,
+    "weight": 75
   },
   {
     "uid": "user19",
@@ -150,7 +185,9 @@
     "name": "Josephine White",
     "type": "User",
     "gender": "Male",
-    "birth": "1994-08-10"
+    "age": 62,
+    "height": 169,
+    "weight": 55
   },
   {
     "uid": "user20",
@@ -158,7 +195,9 @@
     "name": "Benjamin Harris",
     "type": "User",
     "gender": "Female",
-    "birth": "1987-12-14"
+    "age": 27,
+    "height": 166,
+    "weight": 55
   }
 ]
 
