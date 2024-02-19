@@ -80,7 +80,7 @@ router.post("/result", async (req, res) => {
       if (existingResultIndex !== -1) {
         user.quizResults[existingResultIndex] = { category: category, results: quiz_results };
       } else {
-        user.quizResults.push({ category: category, results: quiz_results });
+        user.quizResults.push({ uid: uid ,category: category, results: quiz_results });
       }
       await user.save(async (err, doc) => {
         if (err) {
