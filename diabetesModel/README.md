@@ -1,8 +1,33 @@
 # 당뇨병 예측 모델
 
 이 디렉토리에는 당뇨병 예측 모델을 구현하고 테스트하는 데 필요한 여러 파일들이 포함되어 있습니다.
+모델의 사용 목적은 환자의 라벨링된 생체 데이터를 입력 받으면, 그 값을 이용하여 환자가 당뇨병일 확률을 예측하고, 어떤 특성이 그런 판단에 영향을 많이 주었는지 알 수 있어야 합니다.
+이에 여러 분류 모델 중 앞선 두 가지 특성을 모두 만족할 수 있는 모델인 XGBOOST를 이용하여 머신러닝을 진행하였습니다.
 
-## 파일
+## 데이터 포맷
+
+당뇨병 예측 모델을 학습하고 테스트하는 데 사용되는 데이터는 다음과 같은 형식을 가지고 있습니다.
+
+| Field Name          | Input(json) | Output(json) |
+|---------------------|-------------|--------------|
+| uid                 | str         | str          |
+| Gender              | int         | -            |
+| AGE                 | int         | -            |
+| Urea                | float       | -            |
+| Cr                  | float       | -            |
+| HbA1c               | float       | -            |
+| Chol                | float       | -            |
+| TG                  | float       | -            |
+| HDL                 | float       | -            |
+| LDL                 | float       | -            |
+| VLDL                | float       | -            |
+| BMI                 | float       | -            |
+| timestamp           | str         | -            |
+| predicted_label     | -           | int          |
+| probability         | -           | list(float)  |
+| Max contrib feature | -           | list(int)    |
+
+## 파일 구성
 
 ### `diabetes_contribu_measure_xgboost_model.py`
 
