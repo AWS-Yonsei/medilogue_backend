@@ -355,6 +355,39 @@
           }
         }
       },
+      "/quiz": {
+        "get": {
+          "tags": ["quiz"],
+          "description": "퀴즈 목록을 제공하는 API로 퀴즈를 응시한 적이 있는지 확인해서 피드백을 제공한다.",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": {
+                      "success": true,
+                      "quiz_list": [
+                          {
+                              "category": "당뇨병 퀴즈 (난이도:상)",
+                              "quiz_cnt": 6,
+                              "take_test": false
+                          },
+                          {
+                              "category": "당뇨병 퀴즈 (난이도:하)",
+                              "quiz_cnt": 5,
+                              "take_test": true
+                          }
+                      ]
+                    }
+                  }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
       "/quiz/result": {
         "post": {
           "tags": ["quiz"],
@@ -438,10 +471,20 @@
           }
         }
       },
-      "/quiz/feedback": {
+      "/quiz/feedback/{category}": {
         "get": {
           "tags": ["quiz"],
-          "description": "환자에게 퀴즈에 대한 피드백을 보여주는 API, filter를 이용해서 틀린 문제만 가져온다.",
+          "description": "환자에게 퀴즈에 대한 피드백을 보여주는 API, filter를 이용해서 카테고리에 맞는 결과의 피드백을 가져온다.",
+          "parameters": [
+            {
+              "name": "category",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
           "responses": {
             "200": {
               "description": "OK",
@@ -450,29 +493,42 @@
                   "example": {
                     "success": true,
                     "feedback": [
-                      [
-                          {
-                              "qid": 3,
-                              "content": "당뇨병이 있어도 증상이 없으면 걱정하지 않아도 된다.",
-                              "result": false,
-                              "comment": "정답은 X,혈당이 높은 혈액이 우리 몸을 순환하게된다면 장기에 보이지 않는 문제가 생길 수 있다."
-                          },
-                          {
-                              "qid": 5,
-                              "content": "물을 많이 마시고, 소변을 자주 보는것은 당뇨병의 증상중 하나이다.",
-                              "result": false,
-                              "comment": "정답은 O, 다음과 다뇨는 전형적인 당뇨병 증상이다. 혈당이 높아지면 소변을 자주보고, 따라서 물을 자주 마시기 때문이다."
-                          }
-                      ],
-                      [
-                          {
-                            "qid": 10,
-                            "content": "단 음식을 많이 먹으면 당뇨병에 걸린다.",
-                            "result": false,
-                            "comment": "정답은 X, 정상혈당이라면 단 것으로 혈당이 오르지 않는다. 단, 단 것을 즐겨먹으면 비만의 위험이 높기 때문에 당뇨를 조심해야 한다."
-                          }
-                      ]
-                  ]
+                        {
+                            "category": "당뇨병 퀴즈 (난이도:하)",
+                            "results": [
+                                {
+                                    "qid": 1,
+                                    "content": "Jane Smith",
+                                    "result": true,
+                                    "comment": "Great job! Keep it up!"
+                                },
+                                {
+                                    "qid": 2,
+                                    "content": "Jane Smith",
+                                    "result": true,
+                                    "comment": "Great job! Keep it up!"
+                                },
+                                {
+                                    "qid": 3,
+                                    "content": "Jane Smith",
+                                    "result": false,
+                                    "comment": "정답은 false입니다. 식사 후 혈당이 급격하게 오르는 것을 막기 위해서는 GI지수가 낮은 음식을 섭취해야 합니다."
+                                },
+                                {
+                                    "qid": 4,
+                                    "content": "Jane Smith",
+                                    "result": true,
+                                    "comment": "Great job! Keep it up!"
+                                },
+                                {
+                                    "qid": 5,
+                                    "content": "Jane Smith",
+                                    "result": false,
+                                    "comment": "정답은 true입니다."
+                                }
+                            ]
+                        }
+                    ]
                   }
                 }
               }
