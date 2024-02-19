@@ -20,7 +20,7 @@ router.post("/check-duplicate", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { uid, password, name, type, gender, birth } = req.body;
+  const { uid, password, name, type, gender, age, height, weight } = req.body;
 
   try {
     // email을 비교해서 user가 이미 존재하는지 확인
@@ -40,7 +40,9 @@ router.post("/", async (req, res) => {
       name : name,
       type : type,
       gender : gender,
-      birth : birth,
+      age : age,
+      height : height,
+      weight : weight,
     });
 
     await user.save((err, doc) => {

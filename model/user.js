@@ -88,9 +88,12 @@ userSchema.methods.generateToken = async function (callback) {
       uid: user.uid,
       name: user.name,
       type: user.type,
-      sex: user.gender,
-      birth: user.birth,
+      gender: user.gender,
+      age: user.age,
+      height: user.height,
+      weight: user.weight,
       chatRooms: user.chatRooms,
+      quizResults: user.quizResults,
     },
   };
   const token = jwt.sign(payload, process.env.JWT_SECRET_KEY);
