@@ -78,7 +78,7 @@ router.post("/result", async (req, res) => {
       console.log(user.quizResults);
       const existingResultIndex = user.quizResults.findIndex(data => data.category === category);
       if (existingResultIndex !== -1) {
-        user.quizResults[existingResultIndex] = { category: category, results: quiz_results };
+        user.quizResults[existingResultIndex] = { uid: uid, category: category, results: quiz_results };
       } else {
         user.quizResults.push({ uid: uid ,category: category, results: quiz_results });
       }
