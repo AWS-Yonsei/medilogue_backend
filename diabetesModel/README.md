@@ -8,24 +8,32 @@
 
 당뇨병 예측 모델을 학습하고 테스트하는 데 사용되는 데이터는 다음과 같은 형식을 가지고 있습니다.
 
-| Field Name          | Input(json) | Output(json) |
-|---------------------|-------------|--------------|
-| uid                 | str         | str          |
-| Gender              | int         | -            |
-| AGE                 | int         | -            |
-| Urea                | float       | -            |
-| Cr                  | float       | -            |
-| HbA1c               | float       | -            |
-| Chol                | float       | -            |
-| TG                  | float       | -            |
-| HDL                 | float       | -            |
-| LDL                 | float       | -            |
-| VLDL                | float       | -            |
-| BMI                 | float       | -            |
-| timestamp           | str         | -            |
-| predicted_label     | -           | int          |
-| probability         | -           | list(float)  |
-| Max contrib feature | -           | list(int)    |
+| Field Name          | Input(json) | Output(json) | Ouput Code |
+|---------------------|-------------|--------------|------------|
+| uid                 | str         | str          | -          |
+| Gender              | int         | -            | 0          |
+| AGE                 | int         | -            | 1          |
+| Urea                | float       | -            | 2          |
+| Cr                  | float       | -            | 3          |
+| HbA1c               | float       | -            | 4          |
+| Chol                | float       | -            | 5          |
+| TG                  | float       | -            | 6          |
+| HDL                 | float       | -            | 7          |
+| LDL                 | float       | -            | 8          |
+| VLDL                | float       | -            | 9          |
+| BMI                 | float       | -            | 10         |
+| timestamp           | str         | -            | -          |
+| predicted_label     | -           | int          | -          |
+| probability         | -           | list(float)  | -          |
+| Max contrib feature | -           | list(int)    | -          |
+
+
+**Probability**는 당뇨병 발병 가능성을 나타내는 확률을 나타내고, 
+당뇨병이 아닌 경우 0, 주의해야할 경우 1, 당뇨병일 경우 2의 index에 각각의 확률이 저장됩니다.
+
+**Max contrib feature**는 예측에 가장 큰 영향을 미친 특성을 나타냅니다.
+0 ~ 10으로 표현되며, 총 3가지의 상위 특성이 저장됩니다.
+
 
 ## 파일 구성
 
