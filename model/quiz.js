@@ -13,6 +13,9 @@ const quizSchema = mongoose.Schema({
     type: String,
     enum: ['O', 'X']
   },
+  options:{
+    type: Array
+  },
   reason: {
     type: String,
   }
