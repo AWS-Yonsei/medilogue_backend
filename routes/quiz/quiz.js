@@ -49,8 +49,8 @@ router.get("/", async (req, res) => {
 
 router.get("/:category", async (req, res) => {
   //해당 카테고리에 속한 문제들을 불러오는 API
-  //구현 우선순위 낮음
   try {
+    const quizzes = await Quiz.find({ category: req.params.category});
     return res.status(200).json({
       success: true,
       quizzes: quizzes,
