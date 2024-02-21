@@ -15,13 +15,16 @@ const utils = require("./utils.js");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
 
 var corsOptions = {
   origin: "*",
 };
-
 app.use(cors(corsOptions));
+
+const io = new Server(server, 
+  {cors: {origin: "*"}}
+);
+
 //Express 4.16.0버전 부터 body-parser의 일부 기능이 익스프레스에 내장 body-parser 연결
 app.use(
   cookieSession({
@@ -60,7 +63,7 @@ function countRoom(roomName) {
   // 방에 사람이 몇명이 있는지 계산하는 함수(set의 size를 이용)
   return io.sockets.adapter.rooms.get(roomName)?.size;
 }
-
+/*
 io.on("connection", (socket) => {
   console.log("user connected");
   //접속 시 이전에 속해있던 채팅방들이 있는지 확인함.
@@ -165,6 +168,24 @@ io.on("connection", (socket) => {
     //room에 있는 유저들의 목록을 얻은 다음에 for문을 돌려가면서 notice를 만들고,
     let room = await Room.findOne({ room_id: data.room });
     console.log(room)
+  });
+});
+*/
+
+io.on("connection", (socket) => {
+  console.log("user connected",socket.id);
+  socket.emit("me", socket.id);
+
+  socket.on("disconnect", () => {
+    socket.broadcast.emit("callEnded");
+  });
+
+  socket.on("callUser", ({ userToCall, signalData, from, name }) => {
+    io.to(userToCall).emit("callUser", { signal: signalData, from, name });
+  });
+
+  socket.on("answerCall", (data) => {
+    io.to(data.to).emit("callAccepted", data.signal);
   });
 });
 
