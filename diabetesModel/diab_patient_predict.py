@@ -6,11 +6,12 @@ import shap
 import requests
 
 # 서버에서 JSON 데이터 수신
-#response = requests.get('http://localhost:8080/solution')
-#patient_health_data = response.json()
+response = requests.get('http://localhost:8080/analyze')
+patient_health_data = response.json()['data']
+print(patient_health_data)
 
-with open('temp_test_data/patient_health_testdata.json', 'r') as j:
-    patient_health_data = json.load(j)
+# with open('temp_test_data/patient_health_testdata.json', 'r') as j:
+#     patient_health_data = json.load(j)-
 
 # 모델 불러오기
 with open('model/diab_model.pkl', 'rb') as f:
@@ -63,13 +64,13 @@ result = {
     'uid': str(uid.values[0]),
     'predicted_label': int(x_pred[0]),
     'probability': percentage_proba[0],
-    'Max contrib feature': max_influ_features[0]
+    'features': max_influ_features[0]
 }
 print(result)
 
-url = 'http://localhost:8080/solution'
-#response = requests.post(url, json=result)
+url = 'http://localhost:8080/analyze'
+response = requests.post(url, json=result)
 
-#print(response.status_code)
-#print(response.text)
+print(response.status_code)
+print(response.text)
 
