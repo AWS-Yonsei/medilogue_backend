@@ -1,0 +1,11 @@
+[
+    {"uid": "user2", "predicted_label": 2, "probability": [2.79,3.243,93.967], "features": [5,4,10]},
+    {"uid": "user2", "predicted_label": 2, "probability": [2.79,3.243,93.967], "features": [5,4,10]},
+    {"uid": "user2", "predicted_label": 2, "probability": [7.718,8.972,83.31], "features": [9,5,4]},
+    {"uid": "user2", "predicted_label": 2, "probability": [17.3,31.562,51.138], "features": [8,9,5]},
+    {"uid": "user2", "predicted_label": 2, "probability": [8.343,14.706,76.951], "features": [9,5,10]},
+    {"uid": "user2", "predicted_label": 2, "probability": [21.201,12.643,66.156], "features": [5,10,4]},
+    {"uid": "user2", "predicted_label": 2, "probability": [16.248,35.723,48.029], "features": [9,5,1]}
+    {"uid": "user2", "predicted_label": 0, "probability": [38.516,22.968,38.516], "features": [9,5,4]}
+    {"uid": "user2", "predicted_label": 0, "probability": [45.401,20.396,34.203], "features": [9,5,4]}
+]
