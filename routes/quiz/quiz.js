@@ -120,9 +120,15 @@ router.get("/feedback/:category", async (req, res) => {
     let user = await User.findOne({uid: user_data.user.uid});
     if(user != undefined){
       let feedback = user.quizResults.filter((quiz) => quiz.category === category);
+      if(feedback.length === 0){
+        return res.status(200).json({
+          success: false,
+          message: "quiz not taken",
+        });
+      }
       return res.status(200).json({
           success: true,
-          feedback: feedback
+          feedback: feedback[0].results,
       });
     }
     else{
