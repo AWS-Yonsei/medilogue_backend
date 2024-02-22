@@ -58,11 +58,6 @@ app.get("/", (req, res) => res.send("Hi Claire Welcome to Node.js"));
 
 //app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
-//socket
-function countRoom(roomName) {
-  // 방에 사람이 몇명이 있는지 계산하는 함수(set의 size를 이용)
-  return io.sockets.adapter.rooms.get(roomName)?.size;
-}
 /*
 io.on("connection", (socket) => {
   console.log("user connected");
