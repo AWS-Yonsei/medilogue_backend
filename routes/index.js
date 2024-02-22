@@ -12,6 +12,7 @@ const quiz = require("./quiz/quiz.js")
 const calendar = require("./calendar/index.js")
 const status = require("./user/status.js")
 const mypage = require("./user/mypage.js")
+const solution = require("./user/solution.js")
 
 router.use("/register", register);
 router.use("/auth", auth);
@@ -24,5 +25,6 @@ router.use("/quiz", quiz);
 router.use("/calendar", calendar);
 router.use("/status", status);
 router.use("/mypage", mypage);
+router.use("/solution", solution);
 
 module.exports = router;
