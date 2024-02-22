@@ -1,0 +1,30 @@
+[
+    {
+        "title":"당뇨병 상담 일지 1",
+        "content":["당뇨병에 대한 상담을 진행하였습니다.","단 거 드시지 마시고" ,"약은 XXX로 처방하였습니다."],
+        "doctor": {
+            "name":"정강희",
+            "specialization":"내과"
+        },
+        "patient": {
+            "name":"김영서",
+            "age": 33,
+            "gender":"Male"
+        },
+        "date":"2024-01-01"
+    },
+    {
+        "title":"당뇨병 상담 일지 2",
+        "content":["당뇨병에 대한 상담을 진행하였습니다.","단 거 드시지 마시고" ,"약은 XXX로 처방하였습니다."],
+        "doctor": {
+            "name":"정강희",
+            "specialization":"내과"
+        },
+        "patient": {
+            "name":"김영서",
+            "age": 33,
+            "gender":"Male"
+        },
+        "date":"2024-02-01"
+    }
+]

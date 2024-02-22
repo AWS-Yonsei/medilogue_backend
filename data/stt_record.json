@@ -1,0 +1,5 @@
+{
+    "doctor_id": "user1",
+    "patient_id": "user13",
+    "content": ["This is a test message.", "This is another test message.", "This is a third test message."]
+}
